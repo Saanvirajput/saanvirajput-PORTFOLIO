@@ -26,40 +26,9 @@ Showcasing early-stage concepts like **UniSwap** and **PrepAI**, detailing the i
 - **Backend & Database**: MongoDB + Mongoose for dynamic content management.
 - **Admin Suite**: Custom dashboard at `/admin/login` for real-time project management.
 
-## 🏁 Getting Started
-
-### Prerequisites
-- Node.js 20+
-- MongoDB Atlas account (or local MongoDB)
-
-### Installation
-1. Clone the repository:
-```bash
-git clone https://github.com/Saanvirajput/saanvirajput-PORTFOLIO.git
-cd saanvirajput-PORTFOLIO
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Set up environment variables:
-Create a `.env.local` file with:
-```env
-MONGODB_URI=your_mongodb_connection_string
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-```
-
-4. Run the development server:
-```bash
-npm run dev
-```
-
 ## 📬 Contact
 - **Email**: [saanvirajput10@gmail.com](mailto:saanvirajput10@gmail.com)
 - **LinkedIn**: [linkedin.com/in/saanvirajput](https://linkedin.com/in/saanvirajput)
 - **GitHub**: [github.com/Saanvirajput](https://github.com/Saanvirajput)
 
----
-*Created with focus on Product Management Best Practices.*
+
