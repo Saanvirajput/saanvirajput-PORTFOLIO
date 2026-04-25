@@ -1,34 +1,45 @@
-# Saanvi Rajput - Product Manager Portfolio
-
-A modern, high-fidelity portfolio designed for Aspiring Product Managers. Built with **Next.js 16**, **Tailwind CSS**, and **MongoDB**, this platform goes beyond a static resume to showcase structured thinking, user-centric approaches, and real-world product impact.
+# Saanvi Rajput - Backend & Systems Engineer Portfolio
 
 ## 🚀 Live Demo
-**[saanvirajput-PORTFOLIO on GitHub](https://github.com/Saanvirajput/saanvirajput-PORTFOLIO)**
+**[saanvirajput.github.io/saanvirajput-PORTFOLIO](https://saanvirajput.github.io/saanvirajput-PORTFOLIO/)**
+
+---
+
+A high-performance, modern portfolio showcasing expertise in **Backend Engineering**, **Distributed Systems**, and **Cloud-Native Architecture**. Built with **Next.js 16** and **Tailwind CSS**, optimized for speed and system-level storytelling.
+
+> [!NOTE]
+> This version is optimized for **GitHub Pages** (Static Hosting). The contact form uses direct email integration, and all project data is statically managed for performance.
 
 ## ✨ Core Pillars
 
-### 1. 💼 Professional Track Record (Work)
-Strategic highlights of my roles at **Corporate Cruise**, **Little Paws Care**, and **IoT Lab**, focusing on product-focused engineer contributions, operational leadership, and cross-functional collaboration.
+### 1. 🏗️ Scalability & Systems (Work)
+Technical highlights of my journey at **Corporate Cruise** and **IoT Lab**, focusing on RESTful API architecture, CI/CD automation, and large-scale lab operations.
 
-### 2. 🧩 High-Fidelity Deep Dives (Case Study)
-Structured analysis of major projects like **PawLoft**, **Learned Index Engine**, **Divine Blessings**, **Brain Tease**, and **PolicyHub**. Each study details:
-- **Problem Statement**: Identifying real user pain points.
-- **Solution Strategy**: How specific features solve those problems.
-- **Metrics & Success**: Measuring the tangible impact of the product.
-- **Trade-offs**: Honest analysis of prioritization and technical decisions.
+### 2. 📂 Project Directory
+A comprehensive catalog of **25+ repositories** spanning:
+- **Backend & Microservices**: Spring Boot, Kotlin, FastAPI, DDD/CQRS.
+- **AI & ML**: Predictive modeling and NLP integration.
+- **Full-Stack**: End-to-end platforms with React & Node.js.
+- **Systems & Networking**: C++ search engines and socket programming.
 
-### 3. 💡 Product Brainstorms (Projects)
-Showcasing early-stage concepts like **UniSwap** and **PrepAI**, detailing the ideation phase, user journey mapping, and feature roadmap.
+### 3. 🛡️ Reliability & Performance
+Showcasing deep dives into JVM tuning, Elasticsearch optimization, and high-availability design patterns across projects like **Nexus**, **FinTrack**, and **OmniMall**.
 
 ## 🛠️ Technical Excellence
-- **Frontend**: Next.js 16 (App Router), React, Framer Motion for premium animations.
-- **Styling**: Tailwind CSS with sleek Dark/Light mode support.
-- **Backend & Database**: MongoDB + Mongoose for dynamic content management.
-- **Admin Suite**: Custom dashboard at `/admin/login` for real-time project management.
+- **Languages**: Java, C++, Python, TypeScript.
+- **Frameworks**: Spring Boot, Spring Cloud, FastAPI, Next.js.
+- **Infrastructure**: Docker, Kubernetes, GitHub Actions, AWS.
+- **Architecture**: DDD, CQRS, Microservices, Event-Driven.
+
+## 🏁 Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+```
 
 ## 📬 Contact
 - **Email**: [saanvirajput10@gmail.com](mailto:saanvirajput10@gmail.com)
 - **LinkedIn**: [linkedin.com/in/saanvirajput](https://linkedin.com/in/saanvirajput)
 - **GitHub**: [github.com/Saanvirajput](https://github.com/Saanvirajput)
-
-

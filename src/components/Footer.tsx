@@ -9,7 +9,7 @@ export function Footer() {
             Saanvi Portfolio.
           </Link>
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
-            Aspiring Product Manager specializing in user-centric solutions.
+            Backend Developer specializing in scalable systems and microservices.
           </p>
         </div>
 

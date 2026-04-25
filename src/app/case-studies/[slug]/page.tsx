@@ -1,6 +1,3 @@
-'use client';
-
-import { useParams } from 'next/navigation';
 import { ArrowLeft, Clock, Tag, ChevronRight, Github, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
@@ -23,30 +20,53 @@ interface CaseStudy {
 }
 
 const caseStudiesData: Record<string, CaseStudy> = {
-  'pawloft': {
-    title: 'PawLoft — Animal Rescue & Adoption Platform',
-    tags: ['Product', 'Development', 'Android'],
+  'nexus': {
+    title: 'Nexus — Enterprise Spring Boot Microservices Platform',
+    tags: ['Backend', 'Spring Boot', 'DDD', 'CQRS'],
+    readingTime: '6 min read',
+    content: {
+      problemStatement: 'Managing cross-domain coupling and scalability in large-scale enterprise applications. Traditional monolithic architectures or poorly designed microservices lead to maintenance nightmares and deployment bottlenecks.',
+      targetUsers: 'Enterprise-level applications requiring high scalability and maintainable codebases.',
+      painPoints: 'High coupling between services, inconsistent data models, and complex deployment cycles.',
+      solution: 'Architected a production-grade backend using Domain-Driven Design (DDD) and Command Query Responsibility Segregation (CQRS). Implemented stateless JWT authentication and containerized the entire stack for seamless CI/CD.',
+      features: [
+        'Domain-Driven Design (DDD) Architecture',
+        'CQRS Pattern for Read/Write Separation',
+        'Stateless JWT Authentication with Spring Security',
+        'Dockerized Multi-stage Builds',
+        'GitHub Actions CI/CD Pipeline',
+        'Caffeine In-memory Caching'
+      ],
+      userFlow: 'Request → API Gateway → Service Registry (Eureka) → Domain Service → DB (PostgreSQL) → Cached Response.',
+      metrics: 'Reduced cross-domain coupling across 5+ services; achieved consistent build times under 3 minutes.',
+      tradeOffs: 'Increased initial architectural complexity to ensure long-term scalability and independent service evolution.'
+    }
+  },
+  'fintrack': {
+    title: 'FinTrack — Distributed Financial Microservices Suite',
+    tags: ['Fintech', 'Microservices', 'OAuth2', 'Security'],
     readingTime: '5 min read',
     content: {
-      problemStatement: 'fragmented communication and lack of adoption tracking in animal rescue workflows. Rescuers, NGOs, and adopters struggle to connect effectively, leading to delayed rescues and inefficient adoption processes.',
-      targetUsers: 'Animal rescuers, NGOs/Shelters, and potential pet adopters.',
-      painPoints: 'Fragmented communication, lack of centralized tracking for rescue cases, and high friction in the adoption request flow.',
-      solution: 'Defined a centralized platform that streamlines rescue and adoption workflows. Designed end-to-end user journeys for animal listing, rescue case tracking, and adoption requests. Prioritized real-time status updates and verified listings.',
+      problemStatement: 'Building a secure, distributed financial platform that handles real-time data analytics while ensuring machine-to-machine and user-to-service security.',
+      targetUsers: 'Financial institutions and users requiring real-time cash flow insights.',
+      painPoints: 'Security vulnerabilities in service communication, high latency in financial reporting, and complex multi-service orchestration.',
+      solution: 'Built a 6-service distributed fintech platform using Spring Cloud. Implemented OAuth2-based authentication and real-time cash flow analytics with environment-aware configuration management.',
       features: [
-        'Centralized Animal Listing',
-        'Rescue Case Tracking (Real-time)',
-        'Verified NGO/Rescuer listings',
-        'Streamlined Adoption Workflows',
-        'Multi-user interactions (Firebase backend)'
+        '6-Service Distributed Architecture',
+        'OAuth2-based M2M and User Auth',
+        'Real-time Cash Flow Analytics',
+        'Service Discovery & Circuit Breakers (Hystrix)',
+        'Centralized Environment Configuration',
+        'Docker Compose Multi-service Deployment'
       ],
-      userFlow: 'Rescuers list animals → NGOs track cases → Adopters request and undergo verified workflows → Real-time status updates keep everyone aligned.',
-      metrics: 'Reduced adoption friction by simplifying request flow. (Currently iterating based on usability improvements).',
-      tradeOffs: 'Focused on core rescue mechanics before adding advanced community features to ensure stability for production readiness.'
+      userFlow: 'User Auth (OAuth2) → Gateway → Statistics Service → Real-time Analytics Engine → Dashboard.',
+      metrics: 'Reduced environment spin-up time from ~20 minutes to under 60 seconds; integrated circuit breakers for 90% reduced failure impact.',
+      tradeOffs: 'Prioritized real-time analytics accuracy over supporting extremely high legacy data imports in the MVP.'
     }
   },
   'learned-index': {
     title: 'Learned Index Search Engine — High-Performance Lookup',
-    tags: ['Systems', 'C++20', 'Product Thinking'],
+    tags: ['Systems', 'C++20', 'Backend'],
     readingTime: '4 min read',
     content: {
       problemStatement: 'Performance bottlenecks in standard search approaches (like binary search) when dealing with large-scale data systems. Traditional methods struggle with lookup efficiency at scale.',
@@ -64,75 +84,17 @@ const caseStudiesData: Record<string, CaseStudy> = {
       metrics: 'Achieved ~8–10× performance improvement in benchmark scenarios compared to traditional search methods.',
       tradeOffs: 'Invested more in initial model training time to achieve significantly lower lookup latency.'
     }
-  },
-  'divine-blessings': {
-    title: 'Divine Blessings — Astrology E-Commerce',
-    tags: ['Freelance', 'Product', 'Android'],
-    readingTime: '4 min read',
-    content: {
-      problemStatement: 'Spiritual seekers lacked a unified, trustworthy platform to discover products and receive daily astrology guidance in a seamless e-commerce experience.',
-      targetUsers: 'Individuals interested in spiritual products, daily horoscopes, and daily guidance.',
-      painPoints: 'Scattered sources for spiritual items, lack of daily engagement integrated with commerce, and complex purchase flows.',
-      solution: 'Collaborated with stakeholders to define requirements and built an MVP focusing on product discovery and daily predictive content.',
-      features: [
-        'Daily Astrology Predictions',
-        'Product Discovery Catalog',
-        'Secure Purchase Flow/Checkout',
-        'User Authentication',
-        'Spiritual Content Hub'
-      ],
-      userFlow: 'User reads daily guidance → Discovers related products → Seamless add-to-cart → Integrated checkout.',
-      metrics: 'Delivered a functional MVP that validated the business concept in under 4 months.',
-      tradeOffs: 'Focused on the core commerce engine first; extended social sharing features were paused based on business priorities.'
-    }
-  },
-  'brain-tease': {
-    title: 'Brain Tease — Multiplayer Word Game',
-    tags: ['Game Design', 'Engagement', 'Android'],
-    readingTime: '3 min read',
-    content: {
-      problemStatement: 'Lack of interactive, turn-based word games that focus on both linguistic skill and high user engagement/retention for Android users.',
-      targetUsers: 'Casual gamers and word puzzle enthusiasts looking for social competition.',
-      painPoints: 'Boring single-player loops, lack of competitive mechanics, and poor state management in multiplayer sessions.',
-      solution: 'Designed a 2-player interactive game loop focusing on replayability. Implemented smooth UX and robust state persistence.',
-      features: [
-        'Turn-based Multiplayer Engine',
-        'Interactive Scoring System',
-        'Gameplay State Persistence',
-        'User Engagement Mechanics',
-        'Real-time match notifications'
-      ],
-      userFlow: 'Join match → Play turn → Interactive scoring feedback → Progress tracking.',
-      metrics: 'Improved user retention through optimized gameplay cycles and competitive feedback loops.',
-      tradeOffs: 'Prioritized smooth 2-player interaction over a globally ranked leaderboard for the initial release.'
-    }
-  },
-  'policyhub': {
-    title: 'PolicyHub — Insurance Management App',
-    tags: ['Utility', 'Product', 'Android'],
-    readingTime: '3 min read',
-    content: {
-      problemStatement: 'Users struggle to manage multiple insurance policies from different providers, often missing payment deadlines due to a lack of centralized notifications.',
-      targetUsers: 'Policy holders managing health, life, or vehicle insurance across multiple providers.',
-      painPoints: 'Missed premium payments, fragmented policy documents, and lack of timely reminders.',
-      solution: 'Built a centralized utility for tracking policies and automating reminders. Focused on structured data organization and timely alerts.',
-      features: [
-        'Centralized Policy Storage',
-        'Automated Premium Reminders',
-        'Insurance Provider Directory',
-        'Payment History Tracking',
-        'Document Cloud Sync'
-      ],
-      userFlow: 'Add policy details → Automated notification schedule → One-tap tracking → Timely premium payment.',
-      metrics: 'Provided a practical solution to a real-world problem by reducing the rate of missed payments for beta users.',
-      tradeOffs: 'Chose a simplified data entry flow over OCR scanning to ensure 100% accuracy in policy details for users.'
-    }
   }
 };
 
-export default function CaseStudyDetail() {
-  const params = useParams();
-  const slug = params.slug as string;
+export async function generateStaticParams() {
+  return Object.keys(caseStudiesData).map((slug) => ({
+    slug,
+  }));
+}
+
+export default async function CaseStudyDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const study = caseStudiesData[slug];
 
   if (!study) {
@@ -248,14 +210,12 @@ export default function CaseStudyDetail() {
 
             <section className="p-8 bg-zinc-50 dark:bg-zinc-900/50 rounded-3xl border border-zinc-100 dark:border-zinc-800 flex flex-col gap-4">
               <div className="flex items-center gap-2 text-zinc-900 dark:text-zinc-100 font-bold">
-                <span className="text-xl">👉</span> PM Signal
+                <span className="text-xl">⚙️</span> Engineering Signal
               </div>
               <p className="text-zinc-600 dark:text-zinc-400 font-medium italic">
-                {slug === 'pawloft' && "Problem → users → workflows → prioritization"}
-                {slug === 'learned-index' && "Problem (performance) → solution → measurable impact"}
-                {slug === 'divine-blessings' && "Stakeholder + user + MVP delivery"}
-                {slug === 'brain-tease' && "Engagement + user experience"}
-                {slug === 'policyhub' && "Real-world problem → practical solution"}
+                {slug === 'nexus' && "Architecture → Scalability → CI/CD → Performance"}
+                {slug === 'fintrack' && "Distributed Systems → Security → Real-time Analytics"}
+                {slug === 'learned-index' && "Systems Programming → Optimization → Measurable Impact"}
               </p>
             </section>
           </div>

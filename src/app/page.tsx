@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, BarChart3, Users, Lightbulb } from 'lucide-react';
+import { ArrowRight, BarChart3, Users, Lightbulb, ShieldCheck } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -25,10 +25,10 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <Link
-                href="/case-studies"
+                href="/projects"
                 className="px-6 py-3 bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900 rounded-full font-medium flex items-center gap-2 hover:opacity-90 transition-opacity"
               >
-                View My Work
+                View Project Directory
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
@@ -51,27 +51,28 @@ export default function Home() {
             className="relative group"
           >
             <div className="absolute -inset-4 bg-gradient-to-tr from-zinc-200 to-zinc-50 dark:from-zinc-800 dark:to-zinc-900 rounded-[2.5rem] -z-10 blur-2xl opacity-50 group-hover:opacity-100 transition-opacity" />
-            <div className="aspect-square w-full bg-zinc-100 dark:bg-zinc-800 rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl relative">
-              {/* Profile image placeholder - user should name it profile.jpg */}
-              <div className="absolute inset-0 flex items-center justify-center text-zinc-400 text-xs font-bold text-center p-8 bg-zinc-100 dark:bg-zinc-900">
-                <img 
-                  src="/profile.jpg" 
-                  alt="Saanvi Rajput" 
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    (e.target as any).style.display = 'none';
-                    (e.target as any).parentElement.innerHTML = 'Add your photo as /public/profile.jpg';
-                  }}
-                />
-              </div>
-            </div>
-            {/* Animated accent circle */}
+        <div className="aspect-square w-full bg-zinc-100 dark:bg-zinc-800 rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl relative">
+          <div className="absolute inset-0 flex items-center justify-center text-zinc-400 text-xs font-bold text-center p-8 bg-zinc-100 dark:bg-zinc-900">
+            <img 
+              src="/profile.jpg" 
+              alt="Saanvi Rajput" 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                if (target.parentElement) {
+                  target.parentElement.innerHTML = 'Add your photo as /public/profile.jpg';
+                }
+              }}
+            />
+          </div>
+        </div>
             <motion.div 
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               className="absolute -top-4 -right-4 w-12 h-12 bg-zinc-900 dark:bg-zinc-50 rounded-full flex items-center justify-center shadow-lg"
             >
-              <span className="text-[10px] font-bold text-white dark:text-zinc-900 uppercase tracking-tighter">PM</span>
+              <span className="text-[10px] font-bold text-white dark:text-zinc-900 uppercase tracking-tighter">BE</span>
             </motion.div>
           </motion.div>
         </div>
@@ -101,26 +102,26 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-4">
               <div className="p-3 bg-white dark:bg-zinc-800 rounded-xl w-fit shadow-sm">
-                <Lightbulb className="h-6 w-6 text-zinc-900 dark:text-zinc-100" />
+                <ShieldCheck className="h-6 w-6 text-zinc-900 dark:text-zinc-100" />
               </div>
               <h3 className="text-xl font-bold">Reliability</h3>
               <p className="text-zinc-600 dark:text-zinc-400">
-                Ensuring 99.9% uptime through robust error handling, monitoring, and automated failover mechanisms.
+                Ensuring high availability through robust error handling, monitoring, and automated failover mechanisms.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Case Studies Catcher */}
+      {/* Featured Projects */}
       <section className="max-w-5xl mx-auto px-4 w-full">
         <div className="flex justify-between items-end mb-12">
           <div className="flex flex-col gap-2">
-            <h2 className="text-3xl font-bold tracking-tight">Featured Work</h2>
-            <p className="text-zinc-500 dark:text-zinc-400">Hand-picked selection of case studies.</p>
+            <h2 className="text-3xl font-bold tracking-tight">Technical Projects</h2>
+            <p className="text-zinc-500 dark:text-zinc-400">Featured selection from my 25+ repositories.</p>
           </div>
-          <Link href="/case-studies" className="text-sm font-medium hover:underline flex items-center gap-1 group">
-            All Work <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          <Link href="/projects" className="text-sm font-medium hover:underline flex items-center gap-1 group">
+            Project Directory <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 

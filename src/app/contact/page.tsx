@@ -12,24 +12,11 @@ export default function ContactPage() {
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('loading');
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      if (res.ok) {
-        setStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setStatus('error');
-      }
-    } catch (_err) {
-      setStatus('error');
-    }
+    const mailtoUrl = `mailto:saanvirajput10@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
+    window.location.href = mailtoUrl;
+    setStatus('success');
   };
 
   return (
@@ -38,7 +25,7 @@ export default function ContactPage() {
         <div className="flex flex-col gap-4">
           <h1 className="text-4xl font-bold tracking-tight">Get in Touch</h1>
           <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Interested in collaborating or hiring? I&apos;m always open to discussing product ideas or APM opportunities.
+            Interested in collaborating or hiring? I&apos;m always open to discussing backend architecture or engineering opportunities.
           </p>
         </div>
 
@@ -139,7 +126,7 @@ export default function ContactPage() {
           </button>
 
           {status === 'success' && (
-            <p className="text-green-600 dark:text-green-400 text-sm text-center font-medium">Message sent successfully!</p>
+            <p className="text-green-600 dark:text-green-400 text-sm text-center font-medium">Opening your email client...</p>
           )}
           {status === 'error' && (
             <p className="text-red-600 dark:text-red-400 text-sm text-center font-medium">Failed to send message. Please try again.</p>

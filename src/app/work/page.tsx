@@ -7,40 +7,25 @@ export const metadata: Metadata = {
 
 const experience = [
   {
-    role: 'Founding Engineer (Product-Focused)',
+    role: 'Founding Engineer',
     company: 'Corporate Cruise',
-    period: 'Feb 2026 – Mar 2026',
+    period: 'Jan 2026 – Mar 2026',
     location: 'Remote',
     highlights: [
-      'Led product development from idea to MVP, defining core features and user workflows',
-      'Identified user pain points and translated them into product requirements',
-      'Collaborated on feature prioritization balancing user needs and technical feasibility',
-      'Contributed to building a scalable platform for multi-user interactions'
+      'Architected scalable RESTful backend and 10+ database schemas from scratch',
+      'Led end-to-end development from idea to deployed MVP within 8 weeks, shipping 3 major feature releases on schedule',
+      'Coordinated CI/CD pipelines and frontend integration to ship a production-ready platform serving 50+ users'
     ]
-  },
-  {
-    role: 'Rescue Lead (Operations & Product Thinking)',
-    company: 'Little Paws Care',
-    period: 'Jan 2024 – Jan 2026',
-    location: 'Bhubaneswar',
-    highlights: [
-      'Managed end-to-end rescue operations, coordinating between rescuers, NGOs, and adopters',
-      'Identified inefficiencies in rescue and adoption workflows, inspiring product ideas like PawLoft',
-      'Streamlined communication processes, improving response time and coordination',
-      'Led a team of volunteers and handled real-world user needs in high-pressure situations'
-    ]
-
   },
   {
     role: 'Administration Team Member',
     company: 'IoT Lab, KIIT',
-    period: 'Oct 2022 – Oct 2024',
+    period: 'Jan 2023 – Jan 2024',
     location: 'Bhubaneswar',
     highlights: [
-      'Managed operations for 30+ members and multiple ongoing projects',
-      'Coordinated between teams to ensure smooth execution of lab activities',
-      'Mentored juniors and supported project development workflows',
-      'Developed organizational and stakeholder coordination skills'
+      'Managed lab operations for 30+ members across 10+ active projects',
+      'Mentored 8+ juniors on hardware-software integration, reducing onboarding time by ~30%',
+      'Supported project development workflows and handled resource allocation'
     ]
   }
 ];
@@ -51,7 +36,7 @@ export default function WorkPage() {
       <section className="flex flex-col gap-6 max-w-2xl">
         <h1 className="text-4xl font-bold tracking-tight">Professional Experience</h1>
         <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-          Operationalizing production systems and leading collaborative teams with a product-driven mindset.
+          Building scalable production systems and leading technical teams with a focus on engineering excellence.
         </p>
       </section>
 
