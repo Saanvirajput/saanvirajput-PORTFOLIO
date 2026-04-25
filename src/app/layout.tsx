@@ -8,8 +8,8 @@ import { Footer } from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Saanvi Portfolio | Aspiring Product Manager",
-  description: "Product Manager portfolio showcasing structured thinking, user-centric approach, and real-world product case studies.",
+  title: "Saanvi Rajput | Backend & Systems Engineer",
+  description: "Backend Developer specializing in distributed systems, microservices architecture, and high-performance APIs. Featured projects include enterprise templates, financial microservices, and e-commerce ecosystems.",
 };
 
 export default function RootLayout({
