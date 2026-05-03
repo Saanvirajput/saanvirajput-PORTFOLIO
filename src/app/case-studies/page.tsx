@@ -30,7 +30,7 @@ export default function CaseStudiesPage() {
             <div className="flex flex-col gap-3">
               <h2 className="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">{study.title}</h2>
               <p className="text-zinc-600 dark:text-zinc-400 line-clamp-3">
-                {study.description || study.content.problemStatement}
+                {study.description}
               </p>
             </div>
 
