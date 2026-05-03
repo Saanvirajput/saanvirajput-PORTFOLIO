@@ -250,17 +250,17 @@ export const caseStudiesData: Record<string, CaseStudy> = {
             <div>
               <h3 className="text-xl font-bold mb-4">Core API Design & Best Practices</h3>
               <div className="flex flex-col gap-4">
-                <div className="p-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-xl">
+                <div className="p-4 bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl">
                   <div className="font-mono font-bold mb-2">POST /v1/orders</div>
-                  <ul className="text-sm text-zinc-400 dark:text-zinc-600 space-y-1">
+                  <ul className="text-sm text-zinc-600 dark:text-zinc-400 space-y-1">
                     <li><strong>Headers:</strong> <code>X-Idempotency-Key</code></li>
                     <li><strong>Payload:</strong> User ID, Store ID, Items Array, Delivery Coordinates.</li>
                     <li><strong>Response:</strong> Returns <code>202 Accepted</code> (async processing) instead of waiting for full payment and inventory confirmation, instantly giving the user a loading/processing screen via WebSockets.</li>
                   </ul>
                 </div>
-                <div className="p-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-xl">
+                <div className="p-4 bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl">
                   <div className="font-mono font-bold mb-2">GET /v1/inventory/stores/{'{id}'}/stock</div>
-                  <ul className="text-sm text-zinc-400 dark:text-zinc-600 space-y-1">
+                  <ul className="text-sm text-zinc-600 dark:text-zinc-400 space-y-1">
                     <li><strong>Performance:</strong> Served entirely from the Redis Cache. Uses a highly optimized hash map: <code>HGETALL store:{'{id}'}:stock</code>.</li>
                   </ul>
                 </div>
