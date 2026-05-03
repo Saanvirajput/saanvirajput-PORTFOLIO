@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, BarChart3, Users, Lightbulb, ShieldCheck } from 'lucide-react';
+import profilePic from '../../public/profile.png';
 
 export default function Home() {
   return (
@@ -54,14 +55,14 @@ export default function Home() {
         <div className="aspect-square w-full bg-zinc-100 dark:bg-zinc-800 rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl relative">
           <div className="absolute inset-0 flex items-center justify-center text-zinc-400 text-xs font-bold text-center p-8 bg-zinc-100 dark:bg-zinc-900">
             <img 
-              src="/profile.jpg" 
+              src={profilePic.src} 
               alt="Saanvi Rajput" 
               className="w-full h-full object-cover"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.style.display = 'none';
                 if (target.parentElement) {
-                  target.parentElement.innerHTML = 'Add your photo as /public/profile.jpg';
+                  target.parentElement.innerHTML = 'Add your photo as /public/profile.png';
                 }
               }}
             />
