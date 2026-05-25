@@ -1,9 +1,11 @@
 import React from 'react';
 import { MotionDiv } from '@/components/Motion';
-import { Database, Server, Zap, ArrowRight, Activity, CheckCircle, ShieldCheck, Cpu } from 'lucide-react';
+import { Database, Server, Zap, ArrowRight, Activity, CheckCircle, ShieldCheck, Cpu, Car, MapPin, Navigation, Radio, CreditCard, Clock, LineChart } from 'lucide-react';
 import zeptoArch from '../../public/zepto-arch.png';
 import zeptoLatencyGraph from '../../public/zepto-latency-graph.png';
 import zeptoWarehouseGraph from '../../public/zepto-warehouse-graph.png';
+import uberArch from '../../public/uber-arch.png';
+import uberSurgeGraph from '../../public/uber-surge-graph.png';
 
 export interface Section {
   id: string;
@@ -78,6 +80,55 @@ const GraphAnalysis = () => (
           <strong>Solution:</strong> Smart routing based on live node health.
         </p>
       </div>
+    </div>
+  </div>
+);
+
+const UberArchitecture = () => (
+  <div className="flex flex-col gap-8">
+    <p className="text-lg text-zinc-600 dark:text-zinc-400">
+      The core architecture is highly distributed and event-driven. Here is a simplified high-level view of the major microservices coordinating a ride.
+    </p>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {['API Gateway', 'Location Ingestion ⭐', 'Matching Engine ⭐', 'Dispatch Service', 'Trip Management', 'Pricing Service', 'Payments Service', 'Kafka Event Bus', 'Redis (Live Geo)'].map((service, i) => (
+        <MotionDiv
+          key={service}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.05 }}
+          className={`p-4 rounded-xl border ${service.includes('⭐') ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800' : 'bg-zinc-50 dark:bg-zinc-900 border-zinc-100 dark:border-zinc-800'}`}
+        >
+          <div className="flex items-center gap-3">
+            <Server className={`h-5 w-5 ${service.includes('⭐') ? 'text-blue-500' : 'text-zinc-400'}`} />
+            <span className="font-bold text-sm">{service.replace(' ⭐', '')}</span>
+          </div>
+          {service.includes('⭐') && <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 font-medium">Critical Component</p>}
+        </MotionDiv>
+      ))}
+    </div>
+
+    <div className="bg-zinc-100 dark:bg-zinc-900 rounded-xl w-full border border-zinc-200 dark:border-zinc-800 relative overflow-hidden group shadow-xl">
+      <img src={uberArch.src} className="w-full h-auto object-cover" alt="Uber High Level Architecture Diagram" />
+    </div>
+  </div>
+);
+
+const UberGraphAnalysis = () => (
+  <div className="flex flex-col gap-12">
+    <p className="text-lg text-zinc-600 dark:text-zinc-400">
+      Surge pricing is calculated by analyzing the real-time gap between rider demand and driver availability in a specific geo-fence.
+    </p>
+
+    <div className="flex flex-col gap-4">
+      <h3 className="text-xl font-bold">Demand vs Available Drivers (Surge Model)</h3>
+      <div className="bg-zinc-100 dark:bg-zinc-900 rounded-xl flex items-center justify-center border border-zinc-200 dark:border-zinc-800 relative overflow-hidden shadow-xl max-w-4xl mx-auto w-full">
+        <img src={uberSurgeGraph.src} className="w-full h-auto object-cover" alt="Surge Pricing Graph" />
+      </div>
+      <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-4 max-w-4xl mx-auto">
+        <strong>Insight:</strong> As demand (red line) spikes sharply during peak hours or events, available drivers (blue line) can stagnate or decrease as they get matched.<br /><br />
+        <strong>Solution:</strong> The Pricing Service continuously monitors this differential using streaming data (Kafka). When the ratio crosses a threshold, a surge multiplier is applied. This achieves two things: it reduces artificial demand (price sensitivity) and incentivizes offline drivers to come online and drive towards the surge zone.
+      </p>
     </div>
   </div>
 );
@@ -430,6 +481,185 @@ export const caseStudiesData: Record<string, CaseStudy> = {
         id: 'solution',
         title: 'The Solution',
         content: <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">Designed an asynchronous e-commerce ecosystem. Offloaded search to Elasticsearch, implemented Redis for product caching and cart management, and utilized RabbitMQ for decoupled order processing.</p>
+      }
+    ]
+  },
+  'uber': {
+    title: 'Uber — Real-Time Ride Matching System at Scale',
+    tags: ['System Design', 'Real-Time', 'Distributed Systems', 'Kafka'],
+    readingTime: '12 min read',
+    description: 'Exploring the backend architecture of Uber, focusing on real-time location tracking, rider-driver matching, dynamic pricing, and fault-tolerant trip state management.',
+    sections: [
+      {
+        id: 'problem',
+        title: 'Problem Statement',
+        content: (
+          <>
+            <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              Uber looks simple from the user side: Open app → Enter destination → Get matched with a driver → Track the ride in real time. But the real engineering challenge is handling millions of concurrent, rapidly shifting location streams and orchestrating a distributed state machine for every trip.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-zinc-50 dark:bg-zinc-900 p-8 rounded-2xl border border-zinc-100 dark:border-zinc-800">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2"><CheckCircle className="h-5 w-5 text-green-500" /> Functional Requirements</h3>
+                <ul className="space-y-3 text-zinc-600 dark:text-zinc-400">
+                  <li>• Match riders to drivers (low latency)</li>
+                  <li>• Continuous driver location tracking</li>
+                  <li>• Dynamic Surge Pricing</li>
+                  <li>• Real-time trip state updates</li>
+                  <li>• ETA & route calculation</li>
+                </ul>
+              </div>
+              <div className="bg-zinc-900 text-white p-8 rounded-2xl border border-zinc-800">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2"><Cpu className="h-5 w-5 text-blue-400" /> Non-Functional</h3>
+                <ul className="space-y-3 text-zinc-300">
+                  <li>• High Concurrency (Millions of streams)</li>
+                  <li>• Ultra-low latency for matching</li>
+                  <li>• High Availability (No downtime)</li>
+                  <li>• Fault tolerance for payments/states</li>
+                  <li>• Geo-scalability (City by city)</li>
+                </ul>
+              </div>
+            </div>
+          </>
+        )
+      },
+      {
+        id: 'architecture',
+        title: 'High-Level Architecture',
+        content: <UberArchitecture />
+      },
+      {
+        id: 'workflow',
+        title: 'Trip Workflow (The State Machine)',
+        content: (
+          <div className="flex flex-col gap-4 relative">
+            <div className="absolute left-6 top-8 bottom-8 w-px bg-zinc-200 dark:bg-zinc-800 z-0" />
+            {[
+              { title: 'Driver Online', desc: 'Driver connects via WebSockets and begins streaming location.' },
+              { title: 'Ride Requested', desc: 'Rider POSTs /trips. Pricing & ETA services calculate upfront fare.' },
+              { title: 'Matching Engine', desc: 'Finds optimal driver based on H3 spatial indexing and SLA logic.' },
+              { title: 'Ride Accepted', desc: 'Driver taps accept. Trip transitions to ACCEPTED. Trip event pushed to Kafka.' },
+              { title: 'Real-Time Sync', desc: 'Rider receives live driver coordinates via WebSocket stream.' },
+              { title: 'Trip Started', desc: 'Driver picks up rider. Route transitions to drop-off.' },
+              { title: 'Payment Orchestration', desc: 'Trip ends. Saga pattern processes payment, handles retries, updates rating.' }
+            ].map((step, i) => (
+              <MotionDiv
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex items-start gap-6 relative z-10"
+              >
+                <div className="h-12 w-12 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 flex items-center justify-center font-bold shrink-0 shadow-lg mt-1">
+                  {i + 1}
+                </div>
+                <div className="flex-1 bg-zinc-50 dark:bg-zinc-900 p-5 rounded-xl border border-zinc-100 dark:border-zinc-800">
+                  <h4 className="font-bold text-zinc-900 dark:text-zinc-100">{step.title}</h4>
+                  <p className="text-zinc-600 dark:text-zinc-400 text-sm mt-1">{step.desc}</p>
+                </div>
+              </MotionDiv>
+            ))}
+          </div>
+        )
+      },
+      {
+        id: 'data-model',
+        title: 'Data Model & API Design',
+        content: (
+          <div className="flex flex-col gap-12">
+            <div>
+              <h3 className="text-xl font-bold mb-4">Location Stream Payload (WebSocket)</h3>
+              <div className="p-4 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-xl font-mono text-sm overflow-x-auto">
+                {`{
+  "driver_id": "drv_9876xyz",
+  "lat": 37.7749,
+  "lng": -122.4194,
+  "timestamp": 1716503920,
+  "status": "AVAILABLE",
+  "geo_hash": "9q8yy" // For fast indexing
+}`}
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-bold mb-4">Core Endpoints</h3>
+              <div className="flex flex-col gap-4">
+                <div className="p-4 bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl">
+                  <div className="font-mono font-bold mb-2">POST /v1/trips</div>
+                  <ul className="text-sm text-zinc-600 dark:text-zinc-400 space-y-1">
+                    <li><strong>Action:</strong> Initiates the ride matching process.</li>
+                    <li><strong>Response:</strong> <code>202 Accepted</code> (Asynchronous). The client then listens on its WebSocket connection for the <code>DRIVER_MATCHED</code> event rather than keeping an HTTP request hanging.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      },
+      {
+        id: 'graphs',
+        title: 'Surge Pricing Analytics',
+        content: <UberGraphAnalysis />
+      },
+      {
+        id: 'challenges',
+        title: 'Engineering Challenges',
+        content: (
+          <div className="flex flex-col gap-6">
+            <div className="p-6 bg-red-50 dark:bg-red-950/30 rounded-2xl border border-red-100 dark:border-red-900/50">
+              <h3 className="text-xl font-bold text-red-900 dark:text-red-400 mb-2 flex items-center gap-2">
+                <MapPin className="h-5 w-5" /> Location Ingestion at Scale
+              </h3>
+              <p className="text-red-800 dark:text-red-300 mb-4">Millions of drivers sending GPS coordinates every 3-5 seconds creates a massive write-heavy workload that traditional SQL databases cannot handle.</p>
+              <div className="bg-white dark:bg-zinc-900 px-4 py-3 rounded-lg border border-red-100 dark:border-red-900/30 font-medium flex items-center gap-2">
+                <ArrowRight className="h-4 w-4 text-red-500" /> Solution: Ingest via WebSockets → Buffer in Kafka → Store live state in Redis.
+              </div>
+            </div>
+
+            <div className="p-6 bg-blue-50 dark:bg-blue-950/30 rounded-2xl border border-blue-100 dark:border-blue-900/50">
+              <h3 className="text-xl font-bold text-blue-900 dark:text-blue-400 mb-2 flex items-center gap-2">
+                <Zap className="h-5 w-5" /> The Matching Problem
+              </h3>
+              <p className="text-blue-800 dark:text-blue-300 mb-4">Finding the nearest driver using standard latitude/longitude math (Haversine formula) across all drivers is O(N) and too slow for real-time.</p>
+              <div className="bg-white dark:bg-zinc-900 px-4 py-3 rounded-lg border border-blue-100 dark:border-blue-900/30 font-medium flex items-center gap-2">
+                <ArrowRight className="h-4 w-4 text-blue-500" /> Solution: Geo-spatial indexing (Uber uses H3, a hexagonal grid system). Converts 2D coordinates to 1D strings.
+              </div>
+            </div>
+
+            <div className="p-6 bg-amber-50 dark:bg-amber-950/30 rounded-2xl border border-amber-100 dark:border-amber-900/50">
+              <h3 className="text-xl font-bold text-amber-900 dark:text-amber-400 mb-2 flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5" /> Trip State Consistency
+              </h3>
+              <p className="text-amber-800 dark:text-amber-300 mb-4">A trip involves multiple services (Matching, Pricing, Payments). If payment fails but the trip is marked complete, data is inconsistent.</p>
+              <div className="bg-white dark:bg-zinc-900 px-4 py-3 rounded-lg border border-amber-100 dark:border-amber-900/30 font-medium flex items-center gap-2">
+                <ArrowRight className="h-4 w-4 text-amber-500" /> Solution: Distributed Saga Pattern and strict Idempotency keys on all mutations.
+              </div>
+            </div>
+          </div>
+        )
+      },
+      {
+        id: 'event-driven',
+        title: 'Event-Driven Architecture (Kafka)',
+        content: (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-zinc-50 dark:bg-zinc-900 p-8 rounded-2xl border border-zinc-100 dark:border-zinc-800 flex flex-col gap-4">
+              <h3 className="text-xl font-bold flex items-center gap-2"><Radio className="h-6 w-6 text-indigo-500" /> Decoupled Event Streams</h3>
+              <p className="text-zinc-600 dark:text-zinc-400">
+                Instead of synchronous API calls (which cascade failures), services publish state changes to Kafka topics. This allows auxiliary services (like Analytics, Receipts, Notifications) to consume data asynchronously without impacting the critical path.
+              </p>
+            </div>
+            <div className="bg-zinc-900 text-white p-6 rounded-xl border border-zinc-800 font-mono text-sm overflow-x-auto flex flex-col justify-center">
+              <div className="text-indigo-400 mb-2 font-bold">// Core Kafka Topics</div>
+              <div>Topic: <span className="text-green-400">driver_locations</span></div>
+              <div className="pl-4 text-zinc-500">→ High-throughput live telemetry</div>
+              <div className="mt-4">Topic: <span className="text-amber-400">trip_lifecycle</span></div>
+              <div className="pl-4 text-zinc-500">→ RideRequested, RideAccepted</div>
+              <div className="pl-4 text-zinc-500">→ TripStarted, TripCompleted</div>
+            </div>
+          </div>
+        )
       }
     ]
   }

@@ -71,6 +71,8 @@ export default async function CaseStudyDetail({ params }: { params: Promise<{ sl
                 {slug === 'nexus' && "Architecture → Scalability → CI/CD → Performance"}
                 {slug === 'fintrack' && "Distributed Systems → Security → Real-time Analytics"}
                 {slug === 'learned-index' && "Systems Programming → Optimization → Measurable Impact"}
+                {slug === 'omnimall' && "E-Commerce → Scalability → Message Queues → Caching"}
+                {slug === 'uber' && "Distributed Systems → High Concurrency → Geo-Spatial Indexing → Event-Driven"}
               </p>
             </section>
           </div>

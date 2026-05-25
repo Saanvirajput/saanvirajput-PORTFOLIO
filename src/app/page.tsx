@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, BarChart3, Users, Lightbulb, ShieldCheck } from 'lucide-react';
+import { ArrowRight, BarChart3, Users, Lightbulb, ShieldCheck, Download } from 'lucide-react';
 import profilePic from '../../public/profile.png';
 
 export default function Home() {
@@ -202,6 +202,33 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Resume Download Section */}
+      <section className="max-w-5xl mx-auto px-4 w-full">
+        <div className="p-12 bg-zinc-900 dark:bg-zinc-50 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-white/10 dark:bg-black/10 rounded-full blur-3xl" />
+          <div className="flex flex-col gap-4 relative z-10 max-w-xl text-center md:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white dark:text-zinc-900">
+              Download My Resume
+            </h2>
+            <p className="text-zinc-400 dark:text-zinc-600 text-lg">
+              Get a detailed overview of my experience, skills, and technical background. Available in PDF format for easy sharing and review.
+            </p>
+          </div>
+          <div className="relative z-10 shrink-0">
+            <a
+              href="/saanvirajput-PORTFOLIO/SaanviRajput.pdf"
+              download="SaanviRajput.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white rounded-full font-bold flex items-center gap-3 hover:scale-105 transition-transform shadow-lg"
+            >
+              <Download className="h-5 w-5" />
+              Download PDF
+            </a>
+          </div>
         </div>
       </section>
     </div>

@@ -13,12 +13,15 @@ export default function CaseStudiesPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {Object.entries(caseStudiesData).map(([slug, study]) => (
-          <Link 
-            key={slug}
-            href={`/case-studies/${slug}`}
-            className="group flex flex-col gap-6 p-8 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors"
-          >
+        {['uber', 'zepto', 'nexus', 'fintrack', 'learned-index', 'omnimall'].map((slug) => {
+          const study = caseStudiesData[slug];
+          if (!study) return null;
+          return (
+            <Link 
+              key={slug}
+              href={`/case-studies/${slug}`}
+              className="group flex flex-col gap-6 p-8 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors"
+            >
             <div className="flex flex-wrap gap-2">
               {study.tags.map((tag) => (
                 <span key={tag} className="text-[10px] uppercase tracking-widest font-bold text-zinc-500 bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">
@@ -42,8 +45,9 @@ export default function CaseStudiesPage() {
                 Read Study <ArrowRight className="h-4 w-4" />
               </span>
             </div>
-          </Link>
-        ))}
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
